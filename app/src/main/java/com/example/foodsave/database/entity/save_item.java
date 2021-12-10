@@ -32,8 +32,7 @@ public class save_item {
     @ColumnInfo(name = "type_Id")
     private Integer type_Id;
 
-    public save_item(Integer id, String name, Date create_Date, Long save_Len, String save_Place, Integer type_Id) {
-        this.id = id;
+    public save_item(String name, Date create_Date, Long save_Len, String save_Place, Integer type_Id){
         this.name = name;
         this.create_Date = create_Date;
         this.save_Len = save_Len;

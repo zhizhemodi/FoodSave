@@ -1,6 +1,7 @@
 package com.example.foodsave.database.Dao;
 
 import androidx.room.Dao;
+import androidx.room.Insert;
 import androidx.room.Query;
 
 import com.example.foodsave.database.entity.save_item;
@@ -14,4 +15,13 @@ public interface Save_Item_Dao {
 
     @Query("SELECT * FROM save_item WHERE type_Id = :typeId")
     List<save_item> loadAllByTypes(Integer typeId);
+
+    @Insert
+    void insertAll(save_item... save_items);
+
+    @Insert
+    void insert(save_item a_save_item);
+
+    @Query("DELETE FROM save_item")
+    void clearAll();
 }

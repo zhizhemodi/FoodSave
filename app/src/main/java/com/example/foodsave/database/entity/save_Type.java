@@ -16,8 +16,7 @@ public class save_Type {
     @ColumnInfo(name = "pic_num")
     private Integer pic_num;
 
-    public save_Type(Integer id, String name, Integer pic_num) {
-        this.id = id;
+    public save_Type(String name, Integer pic_num) {
         this.name = name;
         this.pic_num = pic_num;
     }
