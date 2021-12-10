@@ -28,4 +28,13 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
         </com.google.android.material.appbar.AppBarLayout>
     </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:theme="@style/Item_TextSize"
+        app:itemTextColor="@color/black"
+        app:menu="@menu/left_hand" />
 </androidx.drawerlayout.widget.DrawerLayout>
