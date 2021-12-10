@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="colorPrimary">#66CCFF</color>
+    <color name="colorPrimaryDark">#66CCEE</color>
+    <color name="primary_light">#FFECB3</color>
+    <color name="colorAccent">#FF9800</color>
+    <color name="primary_text">#111111</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#212121</color>
+    <color name="divider1">#BDBDBD</color>
+    <color name="divider2">#20CCCCCC</color>
+    <color name="Background">#FFFFFF</color>
+    <color name="red">#FF5353</color>
+    <color name="second_bg">#FFECB3</color>
+
+    <color name="DarkColorPrimary">#FF1D1D1D</color>
+    <color name="DarkColorPrimaryDark">#FF171717</color>
+    <color name="DarkColorAccent">#616161</color>
+    <color name="DarkBackground">#FFFFFF</color>
+    <color name="DarkTextColorPrimary">#FF666666</color>
+    <color name="DarkRed">#990033</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="line1">#20CCCCCC</color>
+    <color name="green">#40c1aa</color>
+    <color name="light_grey">#D7D7D7</color>
+
+    <color name="gray1">#909090</color>
+    <color name="gray2">#666666</color>
+    <color name="white">#f2f2f2</color>
+    <color name="gray3">#bbbbbb</color>
+    <color name="blue">#41a1db</color>
+    <color name="gray4">#999999</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="black1">#333333</color>
+    <color name="popupwindow_back">#a0000000</color>
+    <color name="black2">#666666</color>
+
+    <color name="income">#00bf3c</color>
+    <color name="pay">#de0000</color>
+
+    <color name="tittleText">#ffffff</color>
+    <color name="DarkTittleText">#FFBBBBBB</color>
+
+    <color name="iron">#CCCCCC</color>
+    <color name="primary">#E43F3F</color>
+</resources>

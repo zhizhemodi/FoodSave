@@ -1,0 +1,7 @@
+<resources>
+    <string name="Database_Name">save_database</string>
+    <string name="app_name">FoodSave</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="All_Type">All_Type</string>
+</resources>
