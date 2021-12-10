@@ -10,8 +10,8 @@
 - 使用语言：java
 - 使用数据库：SQLite, Room 2.2.5ver
 
-> 0.27ver
-> 统一了所有字体
+> 0.27ver<br/>
+> 统一了所有字体<br/>
 > 统一了所有文字命名并存储于chinese_strings.xml中
 
 >@ZUCC 计算学院 计科1903
