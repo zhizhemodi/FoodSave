@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--The following is Chinese text-->
+    <string name="main_activity_title">保质期监测</string>
+    <string name="setting">设置</string>
+    <string name="update">升级到家庭版</string>
+    <string name="delete_data">删除数据</string>
+    <string name="about_us">关于我们</string>
+    <string name="still_have">还有</string>
+    <string name="out_of_deadline">过期</string>
+    <string name="create_date">生产日期</string>
+    <string name="saving_place">存放点</string>
+    <string-array name="status">
+        <item>非常新鲜</item>
+        <item>保质期过1/4</item>
+        <item>保质期过半</item>
+        <item>保质期过3/4</item>
+        <item>保质期完结</item>
+        <item>保质期已过</item>
+        <item>烂了</item>
+    </string-array>
+</resources>

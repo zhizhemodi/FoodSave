@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_set"
-        android:title="设置"/>
+        android:title="@string/setting"/>
     <item
         android:id="@+id/update_to_premium"
-        android:title="升级到家庭版"/>
+        android:title="@string/update"/>
     <item
         android:id="@+id/delete_sql"
-        android:title="删除数据"/>
+        android:title="@string/delete_data"/>
     <item
         android:id="@+id/nav_about"
-        android:title="关于我们"/>
+        android:title="@string/about_us"/>
 </menu>

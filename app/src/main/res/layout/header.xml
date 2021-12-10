@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="@dimen/normal_text_size"
-                android:text="生产日期" />
+                android:text="@string/create_date" />
 
             <TextView
                 android:id="@+id/make_date"
@@ -77,7 +77,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="存放点"
+                android:text="@string/saving_place"
                 android:textSize="@dimen/normal_text_size"
                 android:layout_gravity="center" />
             <TextView
@@ -97,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginRight="20dp"
-        android:text="还有"
+        android:text="@string/still_have"
         android:textSize="@dimen/normal_text_size"
         app:layout_constraintRight_toLeftOf="@+id/bigger_num"
         app:layout_constraintTop_toTopOf="@+id/bigger_num" />
@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="4dp"
-        android:text="过期"
+        android:text="@string/out_of_deadline"
         android:textSize="@dimen/normal_text_size"
         app:layout_constraintLeft_toRightOf="@+id/bigger_num"
         app:layout_constraintTop_toTopOf="@+id/bigger_num" />
