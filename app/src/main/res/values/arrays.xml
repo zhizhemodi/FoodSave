@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="status">
+        <item>非常新鲜</item>
+        <item>保质期过1/4</item>
+        <item>保质期过半</item>
+        <item>保质期过3/4</item>
+        <item>保质期完结</item>
+        <item>保质期已过</item>
+        <item>烂了</item>
+    </string-array>
+</resources>
