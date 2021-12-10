@@ -9,3 +9,5 @@
 - 运行环境：Android Studio 集成开发环境，Android SDK 30, jdk 1.8
 - 使用语言：java
 - 使用数据库：SQLite, Room 2.2.5ver
+
+>@ZUCC 计算学院
