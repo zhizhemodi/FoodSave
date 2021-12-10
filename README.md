@@ -1,4 +1,4 @@
-# FoodSave 0.25ver
+# FoodSave 0.27ver
 
 > 程序概述
 
@@ -9,5 +9,9 @@
 - 运行环境：Android Studio 集成开发环境，Android SDK 30, jdk 1.8
 - 使用语言：java
 - 使用数据库：SQLite, Room 2.2.5ver
+
+> 0.27ver
+> 统一了所有字体
+> 统一了所有文字命名并存储于chinese_strings.xml中
 
 >@ZUCC 计算学院 计科1903
