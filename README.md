@@ -1,4 +1,4 @@
-# FoodSave 0.27ver
+# FoodSave 2.0ver
 
 > 程序概述
 
@@ -15,8 +15,16 @@
 > 统一了所有文字命名并存储于chinese_strings.xml中<br/>
 > 更新主界面底部上拉选择框<br/>
 
+>2.0ver<br/>
+>是的我们跳版本了<br/>
+>我们决定让版本号不断逼近自然底数e<br/>
+>目前完善了主界面的SaveAdapter的一部分工作，ta至少能显示了<br/>
+>让SearchThread有了剩余时间计算功能<br/>
+>save_item中添加了@Ignore Long 类型的 "left_time" 数据<br/>
+>为什么没加进数据库？在尝试更新数据库导致一个AVD Manager崩溃后我们选择放弃。
+
 >还要做什么
->>完成主界面的SaveAdapter,实现储物的显示<br/>
+>>完善主界面的SaveAdapter,实现储物的显示<br/>
 >>完成添加页面<br/>
 >>完善侧边栏与底部选择框的功能<br/>
 
