@@ -22,6 +22,7 @@
 >让SearchThread有了剩余时间计算功能<br/>
 >save_item中添加了@Ignore Long 类型的 "left_time" 数据<br/>
 >为什么没加进数据库？在尝试更新数据库导致一个AVD Manager崩溃后我们选择放弃。
+>将 header.xml 的 constraintLayout 修改为 relativeLayout，这很重要，因为只有这样 RecyclerView 才能实现滑动
 
 >还要做什么
 >>完善主界面的SaveAdapter,实现储物的显示<br/>
