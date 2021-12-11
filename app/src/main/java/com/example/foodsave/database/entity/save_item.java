@@ -2,6 +2,7 @@ package com.example.foodsave.database.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.sql.Date;
@@ -31,6 +32,9 @@ public class save_item {
 
     @ColumnInfo(name = "type_Id")
     private Integer type_Id;
+
+    @Ignore
+    private Long left_time;
 
     public save_item(String name, Date create_Date, Long save_Len, String save_Place, Integer type_Id){
         this.name = name;
@@ -86,5 +90,13 @@ public class save_item {
 
     public void setType_Id(Integer type_Id) {
         this.type_Id = type_Id;
+    }
+
+    public Long getLeft_time() {
+        return left_time;
+    }
+
+    public void setLeft_time(Long left_time) {
+        this.left_time = left_time;
     }
 }

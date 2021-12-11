@@ -1,6 +1,7 @@
 package com.example.foodsave.Activity_Main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
@@ -17,6 +20,9 @@ import com.example.foodsave.R;
 import com.example.foodsave.database.entity.save_Type;
 import com.example.foodsave.database.entity.save_item;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -32,7 +38,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         mStatusSpinner = (Spinner) view.findViewById(R.id.mStatus);
         mTypeSpinner = (Spinner) view.findViewById(R.id.mTypes);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.item_list);
-        SaveAdapter adapter = new SaveAdapter(getActivity(), item_list, type_list);
+        SaveAdapter adapter = new SaveAdapter(getContext(), item_list, type_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL,false));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
         if (type_name_list != null) {
             ArrayAdapter<String> type_adapter = new ArrayAdapter<String>(this.getContext(),
@@ -46,6 +54,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
     public void initData(){
         AppDatabase database = Room.databaseBuilder(getActivity().getApplicationContext(),AppDatabase.class,getResources().getString(R.string.Database_Name)).build();
+
         try {
             SearchThread searchThread = new SearchThread(database, getResources().getString(R.string.All_Type));
             searchThread.start();

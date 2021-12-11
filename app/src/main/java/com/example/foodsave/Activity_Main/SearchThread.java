@@ -34,14 +34,11 @@ public class SearchThread extends Thread{
     public void run(){
         String type_name1 = "food";
         Date now = new Date(System.currentTimeMillis());
-        Log.i("hello",String.valueOf(type_dao.getTypeByName(type_name1).get(0).getId()));
-        Log.i("hello",String.valueOf(type_dao.getAll().size()));
-        if (type_dao.getTypeByName(type_name1) == null) {
+        if (type_dao.getTypeByName(type_name1).size() == 0) {
             save_Type food = new save_Type(type_name1, 1);
             type_dao.insertOne(food);
         }
-        save_item biscuit = new save_item("biscuit", now, (long)1000 , "箱子", type_dao.getTypeByName(type_name1).get(0).getId());
-        item_dao.insert(biscuit);
+        save_item bis = new save_item("bis",now,(long)120000,"箱子",1);
         if (type_name.equals(All)) {
             type_list = type_dao.getAll();
             item_list = item_dao.loadAll();
@@ -50,6 +47,12 @@ public class SearchThread extends Thread{
         else{
             type_list = type_dao.getTypeByName(type_name);
             if (type_list != null) item_list = item_dao.loadAllByTypes(type_list.get(0).getId());
+        }
+
+        Date nTime = new Date(System.currentTimeMillis());
+        for (int i = 0;i < item_list.size();i++){
+            save_item n = item_list.get(i);
+            n.setLeft_time(n.getSave_Len() - (nTime.getTime() - n.getCreate_Date().getTime()));
         }
     }
 

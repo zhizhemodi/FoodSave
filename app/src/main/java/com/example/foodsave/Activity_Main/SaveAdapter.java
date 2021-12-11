@@ -14,6 +14,7 @@ import com.example.foodsave.R;
 import com.example.foodsave.database.entity.save_Type;
 import com.example.foodsave.database.entity.save_item;
 
+import java.sql.Date;
 import java.util.List;
 
 /*
@@ -38,34 +39,70 @@ public class SaveAdapter extends RecyclerView.Adapter {
         private ImageView type_img;
         private TextView name;
         private TextView else_day;
-
+        private save_item item_row;
         public ItemView(@NonNull View itemView) {
             super(itemView);
-            this.type_img = (ImageView) itemView.findViewById(R.id.type_pic);
-            this.name = (TextView) itemView.findViewById(R.id.item_name);
-            this.else_day = (TextView) itemView.findViewById(R.id.left_num);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Action
+                }
+            });
         }
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.item,null);
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        View itemView = inflater.inflate(R.layout.item,parent,false);
         ItemView item = new ItemView(itemView);
+        item.name = (TextView) itemView.findViewById(R.id.item_name);
+        item.else_day = (TextView) itemView.findViewById(R.id.left_num);
+        item.type_img = (ImageView) itemView.findViewById(R.id.type_pic);
         return item;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position){
+        ItemView item = (ItemView) holder;
+        save_item snow = save_List.get(position);
+        item.name.setText(snow.getName());
+        String print_left = null;
+        if (snow.getLeft_time() < 0) {
+            print_left = "过期 ";
+            print_left = print_left + LongToString(snow.getLeft_time());
+        }
+        else{
+            print_left = LongToString(snow.getLeft_time());
+        }
+        item.else_day.setText(print_left);
+    }
 
+    private String LongToString(Long time){
+        time = Math.abs(time / 1000);
+        if (time < 60){
+            return time + " 秒";
+        }
+        else if (time / 60 < 60){
+            return time / 60 + " 分";
+        }
+        else if (time / 3600 < 24){
+            return time / 3600 + " 小时";
+        }
+        else if (time / 86400 < 30) {
+            return time / 86400 + " 天";
+        }
+        else if (time / 2592000 < 12){
+            return time / 2592000 + " 月";
+        }
+        else{
+            return  time / 31104000 + " 年";
+        }
     }
 
     @Override
     public int getItemCount() {
-        if (save_List == null) {
-            return 0;
-        }
-
         return save_List.size();
     }
 }
