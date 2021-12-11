@@ -39,9 +39,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         mTypeSpinner = (Spinner) view.findViewById(R.id.mTypes);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.item_list);
         SaveAdapter adapter = new SaveAdapter(getContext(), item_list, type_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL,true));
         recyclerView.addItemDecoration(new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
         if (type_name_list != null) {
             ArrayAdapter<String> type_adapter = new ArrayAdapter<String>(this.getContext(),
                     android.R.layout.simple_list_item_1, type_name_list);

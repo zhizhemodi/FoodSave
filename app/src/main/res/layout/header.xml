@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/fill"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/design_default_color_primary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:background="@color/design_default_color_primary"/>
+
     <ImageView
         android:id="@+id/status_pic"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        app:layout_constraintTop_toBottomOf="@id/fill"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:background="@color/teal_200">
-    </ImageView>
+        android:layout_below="@id/fill"
+        android:background="@color/teal_200"></ImageView>
 
     <LinearLayout
         android:id="@+id/heng_xian"
         android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:layout_below="@id/status_pic"
         app:layout_constraintTop_toBottomOf="@id/status_pic"
         android:background="@color/cardview_shadow_start_color"
         android:orientation="horizontal" />
@@ -32,6 +31,7 @@
         android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/heng_xian"
         app:layout_constraintTop_toBottomOf="@id/heng_xian"
         app:layout_constraintBottom_toTopOf="@id/item_list"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -99,8 +99,8 @@
         android:layout_marginRight="20dp"
         android:text="@string/still_have"
         android:textSize="@dimen/normal_text_size"
-        app:layout_constraintRight_toLeftOf="@+id/bigger_num"
-        app:layout_constraintTop_toTopOf="@+id/bigger_num" />
+        android:layout_alignTop="@id/bigger_num"
+        android:layout_toLeftOf="@id/bigger_num"/>
 
     <TextView
         android:id="@+id/bigger_num"
@@ -109,9 +109,8 @@
         android:layout_marginTop="10dp"
         android:text="xx"
         android:textSize="@dimen/attention_text_size"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/status_pic" />
+        android:layout_below="@id/fill"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -120,23 +119,22 @@
         android:layout_marginTop="4dp"
         android:text="@string/out_of_deadline"
         android:textSize="@dimen/normal_text_size"
-        app:layout_constraintLeft_toRightOf="@+id/bigger_num"
-        app:layout_constraintTop_toTopOf="@+id/bigger_num" />
+        android:layout_alignTop="@+id/bigger_num"
+        android:layout_toRightOf="@id/bigger_num"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/info"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        android:layout_below="@id/info"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:orientation="horizontal"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true">
         <Spinner
             android:id="@+id/mTypes"
             android:layout_width="match_parent"
@@ -153,4 +151,4 @@
             android:entries="@array/status"
             android:background="@color/teal_200"/>
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
