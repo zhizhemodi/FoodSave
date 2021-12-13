@@ -1,7 +1,6 @@
 package com.example.foodsave.Activity_Main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +19,14 @@ import com.example.foodsave.R;
 import com.example.foodsave.database.entity.save_Type;
 import com.example.foodsave.database.entity.save_item;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     private List<save_item> item_list;
     private List<save_Type> type_list;
     private List<String> type_name_list;
-    private Spinner mTypeSpinner = null;
-    private Spinner mStatusSpinner = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         //初始化数据
@@ -38,22 +34,22 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         //创建继承自header的view实例
         View view = inflater.inflate(R.layout.header,container,false);
         //获取两个Spinner实例
-        mStatusSpinner = (Spinner) view.findViewById(R.id.mStatus);
-        mTypeSpinner = (Spinner) view.findViewById(R.id.mTypes);
+        Spinner mStatusSpinner = view.findViewById(R.id.mStatus);
+        Spinner mTypeSpinner = view.findViewById(R.id.mTypes);
         //获取recyclerview实例
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.item_list);
+        RecyclerView recyclerView = view.findViewById(R.id.item_list);
         //创建新的适配器，导入初始化的项目及类型数据
         SaveAdapter adapter = new SaveAdapter(getContext(), item_list, type_list);
         //设置recyclerview为线性布局，方向为竖直（VERTICAL）
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL,true));
         //添加项目间分割线
-        recyclerView.addItemDecoration(new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(this.getContext()), DividerItemDecoration.VERTICAL));
         //导入适配器进行显示
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
         //判断类型列表是否为空，不为空则创建ArrayAdapter并将该适配器赋给 按类型划分下拉框
         if (type_name_list != null) {
-            ArrayAdapter<String> type_adapter = new ArrayAdapter<String>(this.getContext(),
+            ArrayAdapter<String> type_adapter = new ArrayAdapter<>(this.getContext(),
                     android.R.layout.simple_list_item_1, type_name_list);
             mTypeSpinner.setAdapter(type_adapter);
         }
@@ -65,7 +61,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
     public void initData(){
         //获取数据库实例
-        AppDatabase database = Room.databaseBuilder(getActivity().getApplicationContext(),AppDatabase.class,getResources().getString(R.string.Database_Name)).build();
+        AppDatabase database = Room.databaseBuilder(Objects.requireNonNull(getActivity()).getApplicationContext(),AppDatabase.class,getResources().getString(R.string.Database_Name)).build();
         //数据库查询操作
         try {
             //创建查询线程，输入值为“All_Type"

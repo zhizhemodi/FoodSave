@@ -1,18 +1,17 @@
 package com.example.foodsave.Activity_Main;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.os.Bundle;
-
-import com.example.foodsave.Activity_Main.HomeFragment;
 import com.example.foodsave.R;
 
 /*
  * 主页面UI线程
- * 用于设置toolbar, homefragment
+ * 用于设置toolbar, HomeFragment
  * 可能需要添加toolbar中的listener
  */
 public class MainActivity extends AppCompatActivity {
@@ -27,14 +26,14 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle(R.string.main_activity_title);
         setSupportActionBar(toolbar);
 
-        //获取 drawerlayout 实例，并添加监听
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.draw_layout);
+        //获取 DrawerLayout 实例，并添加监听
+        DrawerLayout drawer = findViewById(R.id.draw_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,drawer,toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        //创建homefragment实例并载入Fragmentlayout
+        //创建HomeFragment实例并载入FragmentLayout
         HomeFragment homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content,homeFragment).commit();
