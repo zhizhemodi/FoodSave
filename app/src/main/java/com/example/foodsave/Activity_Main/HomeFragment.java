@@ -1,6 +1,7 @@
 package com.example.foodsave.Activity_Main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,15 +75,37 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
             item_list = searchThread.getItem_list();
             type_list = searchThread.getType_list();
             type_name_list = searchThread.getType_name_list();
+            //在数组首位添加“全部类型”选项,这样初始显示为“全部类型”
+            type_name_list.add(0,getString(R.string.ch_All_Type));
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
 
+    /*
+     * 选中监听器返回函数
+     * 输入数据:
+     * @adapterView: 事件发生的View，可通过该实例的getId()方法判断哪一个Spinner发生了选择事件
+     * @view: 主界面窗口
+     * @i: 被选中项的id
+     * @l: 同i
+     */
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+        String get = null;
+        switch (adapterView.getId()){
+            case R.id.mStatus:
+                //TODO 按状态进行数据查询
+                String[] status = getResources().getStringArray(R.array.status);
+                get = status[i]; //当前选中的状态
+                break;
+            case R.id.mTypes:
+                //TODO 按类型进行数据查询
+                get = type_name_list.get(i); //当前选中的类型
+                break;
+        }
+        Log.i("get", get);
     }
 
     @Override
