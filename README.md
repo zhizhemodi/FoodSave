@@ -30,6 +30,6 @@
 >>完善侧边栏与底部选择框的功能<br/>
 
 >示例图片
-<img src="./README_pic/demo1.png" alt="alt" style="zoom:25%;" />
+<img src="./README_pic/demo1.png" alt="alt"  width="250px"/>
 
 >@ZUCC 计算学院 计科1903
