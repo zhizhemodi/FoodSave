@@ -8,10 +8,15 @@ import androidx.room.PrimaryKey;
 import java.sql.Date;
 
 /*
- *
  * 类描述：该类主要用于记录储物信息
  * 数据描述：
- *
+ * @id: 唯一编号，自动生成
+ * @name: 储物名称，可重复
+ * @create_Date: 生产日期或储存日期
+ * @save_Len: 保质期
+ * @save_Place: 存放地点
+ * @type_Id: 储物类型编号
+ * @left_time: 剩余保质期，不存储于数据库
  */
 @Entity
 public class save_item {

@@ -11,6 +11,12 @@ import com.example.foodsave.database.entity.save_item;
 import java.sql.Date;
 import java.util.List;
 
+/*
+ * 数据库查询线程
+ * 输入数据：
+ * @database: 要查询的数据库
+ * @type: 按类型查询
+ */
 public class SearchThread extends Thread{
     private Save_Item_Dao item_dao;
     private Save_Type_Dao type_dao;
@@ -32,6 +38,8 @@ public class SearchThread extends Thread{
 
     @Override
     public void run(){
+        //为了测试需要向数据库添加数据的代码
+        // start
         String type_name1 = "food";
         Date now = new Date(System.currentTimeMillis());
         if (type_dao.getTypeByName(type_name1).size() == 0) {
@@ -40,16 +48,21 @@ public class SearchThread extends Thread{
         }
         save_item bis = new save_item("bis",now,(long)500000000,"箱子",1);
         //item_dao.insert(bis);
+        // end
+
+        //假如按类型筛选数据值为All，调用查询所有数据的函数
         if (type_name.equals(All)) {
             type_list = type_dao.getAll();
             item_list = item_dao.loadAll();
             type_name_list = type_dao.getAllName();
         }
+        //按类型筛选数据筛选
         else{
             type_list = type_dao.getTypeByName(type_name);
             if (type_list != null) item_list = item_dao.loadAllByTypes(type_list.get(0).getId());
         }
 
+        //获取系统时间并计算储物剩余保质期
         Date nTime = new Date(System.currentTimeMillis());
         for (int i = 0;i < item_list.size();i++){
             save_item n = item_list.get(i);

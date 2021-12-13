@@ -22,6 +22,7 @@ import java.util.List;
  * 数据描述：
  * @mContext : 主界面给出的context
  * @save_List : 储物列表
+ * @save_types: 储物类型列表
  */
 public class SaveAdapter extends RecyclerView.Adapter {
     private Context mContext;
@@ -66,9 +67,12 @@ public class SaveAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position){
         ItemView item = (ItemView) holder;
+        //获取当前位置的储物实例
         save_item snow = save_List.get(position);
+        //获取当前储物名称并显示
         item.name.setText(snow.getName());
         String print_left = null;
+        //假如剩余时间小于0，在要显示的字符串前添加“过期 ”
         if (snow.getLeft_time() < 0) {
             print_left = "过期 ";
             print_left = print_left + LongToString(snow.getLeft_time());
@@ -76,9 +80,11 @@ public class SaveAdapter extends RecyclerView.Adapter {
         else{
             print_left = LongToString(snow.getLeft_time());
         }
+        //设置显示
         item.else_day.setText(print_left);
     }
 
+    //将Long类型数据转换为时间
     private String LongToString(Long time){
         time = Math.abs(time / 1000);
         if (time < 60){

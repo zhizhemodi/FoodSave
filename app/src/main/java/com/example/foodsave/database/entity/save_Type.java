@@ -4,7 +4,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-//储物类型类
+/* 储物类型类
+ * 数据描述：
+ * @id: 类型编号，唯一且自动生成
+ * @name: 类型名称
+ * @pic_num: 该类型所对应的图片
+ */
 @Entity
 public class save_Type {
     @PrimaryKey(autoGenerate = true)
