@@ -11,6 +11,8 @@
     <string name="create_date">生产日期</string>
     <string name="saving_place">存放点</string>
     <string name="ch_All_Type">全部种类</string>
+    <string name="version_name">软件版本号：</string>
+    <string name="can_not_find_version_name">无法获取版本信息</string>
     <string name="about_us_1">欢迎使用储物保质期记录APP，此APP创建与2021年12月，下面内容将介绍该软件的基本用法。</string>
     <string-array name="ch_status">
         <item>全部状态</item>
