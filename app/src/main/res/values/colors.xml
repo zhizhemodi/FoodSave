@@ -42,12 +42,17 @@
     <color name="popupwindow_back">#a0000000</color>
     <color name="black2">#666666</color>
 
-    <color name="income">#00bf3c</color>
-    <color name="pay">#de0000</color>
-
     <color name="tittleText">#ffffff</color>
     <color name="DarkTittleText">#FFBBBBBB</color>
 
     <color name="iron">#CCCCCC</color>
     <color name="primary">#E43F3F</color>
+
+    <color name="fresh">#00bf3c</color>
+    <color name="one_quater">#8BC34A</color>
+    <color name="half_time">#CDDC39</color>
+    <color name="three_quater">#FFC107</color>
+    <color name="full_time">#FF5722</color>
+    <color name="out_of_time">#F44336</color>
+    <color name="ban">#000000</color>
 </resources>

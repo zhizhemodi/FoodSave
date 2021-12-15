@@ -27,6 +27,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     private List<save_item> item_list;
     private List<save_Type> type_list;
     private List<String> type_name_list;
+    private RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -38,7 +39,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         Spinner mStatusSpinner = view.findViewById(R.id.mStatus);
         Spinner mTypeSpinner = view.findViewById(R.id.mTypes);
         //获取recyclerview实例
-        RecyclerView recyclerView = view.findViewById(R.id.item_list);
+        recyclerView = view.findViewById(R.id.item_list);
         //创建新的适配器，导入初始化的项目及类型数据
         SaveAdapter adapter = new SaveAdapter(getContext(), item_list, type_list);
         //设置recyclerview为线性布局，方向为竖直（VERTICAL）
@@ -62,11 +63,13 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
     public void initData(){
         //获取数据库实例
-        AppDatabase database = Room.databaseBuilder(Objects.requireNonNull(getActivity()).getApplicationContext(),AppDatabase.class,getResources().getString(R.string.Database_Name)).build();
+        AppDatabase database = Room.databaseBuilder(Objects.requireNonNull(getActivity()).getApplicationContext(),
+                AppDatabase.class,getResources().getString(R.string.Database_Name)).build();
         //数据库查询操作
         try {
+            String[] status = getResources().getStringArray(R.array.status);
             //创建查询线程，输入值为“All_Type"
-            SearchThread searchThread = new SearchThread(database, getResources().getString(R.string.All_Type));
+            SearchThread searchThread = new SearchThread(database, getResources().getString(R.string.All_Type), status);
             //启动线程
             searchThread.start();
             //等待线程返回
@@ -77,6 +80,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
             type_name_list = searchThread.getType_name_list();
             //在数组首位添加“全部类型”选项,这样初始显示为“全部类型”
             type_name_list.add(0,getString(R.string.ch_All_Type));
+
         }
         catch (Exception e){
             e.printStackTrace();
@@ -94,18 +98,38 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String get = null;
+        String[] status = getResources().getStringArray(R.array.status);
         switch (adapterView.getId()){
             case R.id.mStatus:
                 //TODO 按状态进行数据查询
-                String[] status = getResources().getStringArray(R.array.status);
                 get = status[i]; //当前选中的状态
                 break;
             case R.id.mTypes:
                 //TODO 按类型进行数据查询
                 get = type_name_list.get(i); //当前选中的类型
+                //这里将ch_All_Type转换为All_Type进行数据搜索
+                if (get.equals(getString(R.string.ch_All_Type))){
+                    get = getString(R.string.All_Type);
+                }
+                AppDatabase database = Room.databaseBuilder(Objects.requireNonNull(getActivity()).getApplicationContext(),
+                        AppDatabase.class,getResources().getString(R.string.Database_Name)).build();
+                SearchThread searchThread = new SearchThread(database, get, status);
+                searchThread.start();
+                try {
+                    searchThread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                item_list = searchThread.getItem_list();
+                //创建新的适配器，导入初始化的项目及类型数据
+                SaveAdapter adapter = new SaveAdapter(getContext(), item_list, type_list);
+                //设置recyclerview为线性布局，方向为竖直（VERTICAL）
+                recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL,true));
+                //导入适配器进行显示
+                recyclerView.setAdapter(adapter);
+                recyclerView.setNestedScrollingEnabled(false);
                 break;
         }
-        Log.i("get", get);
     }
 
     @Override

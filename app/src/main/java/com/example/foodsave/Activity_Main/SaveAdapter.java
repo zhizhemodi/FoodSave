@@ -1,6 +1,7 @@
 package com.example.foodsave.Activity_Main;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodsave.R;
 import com.example.foodsave.database.entity.save_Type;
 import com.example.foodsave.database.entity.save_item;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 /*
@@ -40,6 +43,7 @@ public class SaveAdapter extends RecyclerView.Adapter {
         private TextView name;
         private TextView else_day;
         private save_item item_row;
+        private ConstraintLayout item_back;
         public ItemView(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +64,7 @@ public class SaveAdapter extends RecyclerView.Adapter {
         item.name = (TextView) itemView.findViewById(R.id.item_name);
         item.else_day = (TextView) itemView.findViewById(R.id.left_num);
         item.type_img = (ImageView) itemView.findViewById(R.id.type_pic);
+        item.item_back = itemView.findViewById(R.id.item_back);
         return item;
     }
 
@@ -72,15 +77,19 @@ public class SaveAdapter extends RecyclerView.Adapter {
         item.name.setText(snow.getName());
         String print_left = null;
         //假如剩余时间小于0，在要显示的字符串前添加“过期 ”
+        Long le = snow.getSave_Len() - snow.getLeft_time();
         if (snow.getLeft_time() < 0) {
             print_left = "过期 ";
-            print_left = print_left + LongToString(snow.getLeft_time());
+            print_left = print_left + LongToString(le);
         }
         else{
-            print_left = LongToString(snow.getLeft_time());
+            print_left = LongToString(le);
         }
         //设置显示
         item.else_day.setText(print_left);
+        String color_name = snow.getStatus();
+        //设置背景颜色
+        item.item_back.setBackgroundColor(mContext.getResources().getColor(mygetColor(color_name)));
     }
 
     //将Long类型数据转换为时间
@@ -109,5 +118,17 @@ public class SaveAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return save_List.size();
+    }
+
+    //根据状态获取颜色
+    public int mygetColor(String color_name){
+        Field field = null;
+        int color = R.color.white;
+        try {
+            color = mContext.getResources().getIdentifier("half_time","color", mContext.getPackageName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return color;
     }
 }

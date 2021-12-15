@@ -41,6 +41,9 @@ public class save_item {
     @Ignore
     private Long left_time;
 
+    @Ignore
+    private String status;
+
     public save_item(String name, Date create_Date, Long save_Len, String save_Place, Integer type_Id){
         this.name = name;
         this.create_Date = create_Date;
@@ -103,5 +106,13 @@ public class save_item {
 
     public void setLeft_time(Long left_time) {
         this.left_time = left_time;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
