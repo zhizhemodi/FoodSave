@@ -15,19 +15,21 @@
 > 统一了所有文字命名并存储于chinese_strings.xml中<br/>
 > 更新主界面底部上拉选择框<br/>
 
->2.0ver<br/>
->是的我们跳版本了<br/>
->我们决定让版本号不断逼近自然底数e<br/>
+>2.1ver<br/>
+>版本号将不断逼近自然底数e<br/>
 >目前完善了主界面的SaveAdapter的一部分工作，ta至少能显示了<br/>
->让SearchThread有了剩余时间计算功能<br/>
+>目前也完善了每项的颜色显示功能<br/>
+>让SearchThread有了剩余时间和剩余百分比的计算功能<br/>
 >save_item中添加了@Ignore Long 类型的 "left_time" 数据<br/>
->为什么没加进数据库？在尝试更新数据库导致一个AVD Manager崩溃后我们选择放弃。<br/>
+>save_item中添加了@Ignore String 类型的 "statu" 数据<br/>
 >将 header.xml 的 constraintLayout 修改为 relativeLayout，这很重要，因为只有这样 RecyclerView 才能实现滑动
 
 >还要做什么
->>完善主界面的SaveAdapter,实现储物的显示<br/>
 >>完成添加页面<br/>
 >>完善侧边栏与底部选择框的功能<br/>
+>>完善按状态选择功能<br/>
+>>完善左侧滑动栏的功能<br/>
+>>完善项目选中及详细信息的显示功能<br/>
 
 >示例图片
 <img src="./README_pic/demo1.png" alt="alt"  width="250px"/>
