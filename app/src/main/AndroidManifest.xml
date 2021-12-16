@@ -19,10 +19,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Other.about_us"
-            android:theme="@style/AppTheme.NoActionBar">>
-
-        </activity>
     </application>
 </manifest>

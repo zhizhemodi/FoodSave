@@ -22,14 +22,13 @@ import com.google.android.material.navigation.NavigationView;
  * 用于设置toolbar, HomeFragment
  * 可能需要添加toolbar中的listener
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements fragmentListener {
 
     private NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //设置toolbar的显示字
         Toolbar toolbar = findViewById(R.id.toolBar);
         toolbar.setTitle(R.string.main_activity_title);
@@ -51,11 +50,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.nav_about){
-                    Intent intent = new Intent(MainActivity.this, about_us.class);
-                    startActivity(intent);
+                    about_us about_usFragment = new about_us();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content,about_usFragment).commit();
                 }
                 return true;
             }
         });
+    }
+
+    @Override
+    public void showTitle(String title) {
+        Toolbar toolbar = findViewById(R.id.toolBar);
+        toolbar.setTitle(title);
     }
 }

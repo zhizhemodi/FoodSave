@@ -1,5 +1,6 @@
 package com.example.foodsave.Activity_Main;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,13 +30,20 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     private List<save_Type> type_list;
     private List<String> type_name_list;
     private RecyclerView recyclerView;
+    private fragmentListener activity;
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.activity = (fragmentListener) activity;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         //初始化数据
         initData();
         //创建继承自header的view实例
         View view = inflater.inflate(R.layout.header,container,false);
+        activity.showTitle(getString(R.string.main_activity_title));
         //获取两个Spinner实例
         Spinner mStatusSpinner = view.findViewById(R.id.mStatus);
         Spinner mTypeSpinner = view.findViewById(R.id.mTypes);
