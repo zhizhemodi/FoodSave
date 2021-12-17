@@ -10,14 +10,14 @@
         android:id="@+id/fill"
         android:layout_width="match_parent"
         android:layout_height="@dimen/header_height"
-        android:background="@color/design_default_color_primary"/>
+        android:background="@color/Background"/>
 
     <ImageView
         android:id="@+id/status_pic"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_below="@id/fill"
-        android:background="@color/teal_200"></ImageView>
+        android:background="@color/Background"></ImageView>
 
     <LinearLayout
         android:id="@+id/heng_xian"
@@ -25,7 +25,7 @@
         android:layout_height="1dp"
         android:layout_below="@id/status_pic"
         app:layout_constraintTop_toBottomOf="@id/status_pic"
-        android:background="@color/cardview_shadow_start_color"
+        android:background="@color/Background"
         android:orientation="horizontal" />
     <LinearLayout
         android:id="@+id/info"
@@ -39,15 +39,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/teal_200"
-            android:orientation="vertical"
-            android:layout_margin="1dp">
+            android:background="@color/divider1"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 style="@style/Normal_TextSize"
                 android:text="@string/create_date"/>
@@ -63,18 +62,13 @@
                 android:layout_marginTop="10dp"
                 />
         </LinearLayout>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/cardview_shadow_start_color"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/teal_200"
+            android:background="@color/divider1"
             android:orientation="vertical"
-            android:layout_margin="1dp">
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -94,16 +88,6 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/still_have"
-        style="@style/Normal_TextSize"
-        android:layout_alignTop="@id/bigger_num"
-        android:layout_toLeftOf="@id/bigger_num"/>
-
-    <TextView
         android:id="@+id/bigger_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,16 +96,6 @@
         style="@style/Attention_TextSize"
         android:layout_below="@id/fill"
         android:layout_centerHorizontal="true"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/out_of_deadline"
-        style="@style/Normal_TextSize"
-        android:layout_alignTop="@+id/bigger_num"
-        android:layout_toRightOf="@id/bigger_num"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_list"
@@ -142,7 +116,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
-            android:background="@color/teal_200"/>
+            android:background="@color/divider1"/>
         <Spinner
             android:id="@+id/mStatus"
             android:layout_width="match_parent"
@@ -150,6 +124,6 @@
             android:layout_weight="1"
             android:layout_margin="3dp"
             android:entries="@array/ch_status"
-            android:background="@color/teal_200"/>
+            android:background="@color/divider1"/>
     </LinearLayout>
 </RelativeLayout>

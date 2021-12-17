@@ -19,7 +19,7 @@ import java.sql.Date;
  * @left_time: 剩余保质期，不存储于数据库
  */
 @Entity
-public class save_item {
+public class save_item implements Comparable{
     @PrimaryKey(autoGenerate = true)
     private Integer id;
 
@@ -114,5 +114,12 @@ public class save_item {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        save_item ot = (save_item) o;
+        int re = (int) ((this.getLeft_time() / this.getSave_Len()) - (ot.getLeft_time() / ot.getSave_Len()));
+        return re;
     }
 }

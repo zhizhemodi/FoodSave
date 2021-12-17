@@ -50,7 +50,7 @@ public class SearchThread extends Thread{
             save_Type food = new save_Type(type_name1, 1);
             type_dao.insertOne(food);
         }
-        save_item bis = new save_item("bis",now,(long)500000000,"箱子",1);
+        save_item bis = new save_item("bis",now,(long)5000,"箱子",1);
         //item_dao.insert(bis);
         // end
 

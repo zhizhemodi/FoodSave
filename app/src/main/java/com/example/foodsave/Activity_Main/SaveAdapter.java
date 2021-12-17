@@ -1,6 +1,7 @@
 package com.example.foodsave.Activity_Main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodsave.R;
@@ -17,6 +20,8 @@ import com.example.foodsave.database.entity.save_Type;
 import com.example.foodsave.database.entity.save_item;
 
 import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /*
@@ -35,10 +40,17 @@ public class SaveAdapter extends RecyclerView.Adapter {
         this.mContext = mContext;
         this.save_List = save_List;
         this.save_types = save_types;
+        Collections.sort(save_List, new Comparator<save_item>() {
+            @Override
+            public int compare(save_item save_item, save_item t1) {
+                return save_item.compareTo(t1);
+            }
+        });
     }
 
     //ItemView内部类
     public class ItemView extends RecyclerView.ViewHolder{
+        private int position;
         private ImageView type_img;
         private TextView name;
         private TextView else_day;
@@ -49,9 +61,16 @@ public class SaveAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Action
+                    //TODO 选中后修改详细显示界面
+                    Intent intent = new Intent("Select_One");
+                    intent.putExtra("select_id", position);
+                    LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
                 }
             });
+        }
+
+        public void setA_save_item(int position) {
+            this.position = position;
         }
     }
 
@@ -73,12 +92,13 @@ public class SaveAdapter extends RecyclerView.Adapter {
         ItemView item = (ItemView) holder;
         //获取当前位置的储物实例
         save_item snow = save_List.get(position);
+        item.setA_save_item(position);
         //获取当前储物名称并显示
         item.name.setText(snow.getName());
         String print_left = null;
         //假如剩余时间小于0，在要显示的字符串前添加“过期 ”
         Long le = snow.getSave_Len() - snow.getLeft_time();
-        if (snow.getLeft_time() < 0) {
+        if (le < 0) {
             print_left = "过期 ";
             print_left = print_left + LongToString(le);
         }
@@ -93,7 +113,7 @@ public class SaveAdapter extends RecyclerView.Adapter {
     }
 
     //将Long类型数据转换为时间
-    private String LongToString(Long time){
+    public static String LongToString(Long time){
         time = Math.abs(time / 1000);
         if (time < 60){
             return time + " 秒";
@@ -125,7 +145,7 @@ public class SaveAdapter extends RecyclerView.Adapter {
         Field field = null;
         int color = R.color.white;
         try {
-            color = mContext.getResources().getIdentifier("half_time","color", mContext.getPackageName());
+            color = mContext.getResources().getIdentifier(color_name,"color" , mContext.getPackageName());
         } catch (Exception e) {
             e.printStackTrace();
         }

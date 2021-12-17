@@ -13,9 +13,9 @@
     <color name="primary_text">#111111</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#212121</color>
-    <color name="divider1">#BDBDBD</color>
+    <color name="divider1">#FAEAD3</color>
     <color name="divider2">#20CCCCCC</color>
-    <color name="Background">#FFFFFF</color>
+    <color name="Background">#E0E5DF</color>
     <color name="red">#FF5353</color>
     <color name="second_bg">#FFECB3</color>
 
@@ -48,11 +48,13 @@
     <color name="iron">#CCCCCC</color>
     <color name="primary">#E43F3F</color>
 
-    <color name="fresh">#00bf3c</color>
-    <color name="one_quater">#8BC34A</color>
-    <color name="half_time">#CDDC39</color>
-    <color name="three_quater">#FFC107</color>
-    <color name="full_time">#FF5722</color>
-    <color name="out_of_time">#F44336</color>
-    <color name="ban">#000000</color>
+    <color name="fresh">#e0e5df</color>
+    <color name="one_quater">#d3d4cc</color>
+    <color name="half_time">#b5c4b1</color>
+    <color name="three_quater">#96a48b</color>
+    <color name="full_time">#7b8b6f</color>
+    <color name="out_of_time">#d8caaf</color>
+    <color name="ban">#965454</color>
+
+
 </resources>

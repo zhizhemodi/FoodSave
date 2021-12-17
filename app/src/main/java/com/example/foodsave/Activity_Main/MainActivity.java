@@ -1,5 +1,6 @@
 package com.example.foodsave.Activity_Main;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.foodsave.Other.SettingFragment;
 import com.example.foodsave.Other.about_us;
 import com.example.foodsave.R;
+import com.example.foodsave.database.entity.save_item;
 import com.google.android.material.navigation.NavigationView;
 
 /*
@@ -76,6 +78,12 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
                     SettingFragment setting_fragment = new SettingFragment();
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.content,setting_fragment).commit();
+                }
+                if (item.getItemId() == R.id.update_to_premium){
+                    //TODO 网络升级功能
+                }
+                if (item.getItemId() == R.id.delete_sql){
+                    //TODO 删除数据库所有信息
                 }
                 return true;
             }
