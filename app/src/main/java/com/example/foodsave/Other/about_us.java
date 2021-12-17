@@ -33,13 +33,18 @@ public class about_us extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.about_us,container,false);
+        //设置主Activity标题
         activity.showTitle(getString(R.string.about_us));
+        //获取版本显示View
         TextView version = view.findViewById(R.id.app_version);
+        //获取APP版本号并设置
         version.setText(getVersion());
+        //设置返回按钮
         Button back = view.findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //返回主界面
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.content,new HomeFragment()).commit();
@@ -48,6 +53,9 @@ public class about_us extends Fragment {
         return view;
     }
 
+    /*
+     * 获取APP版本
+     */
     public String getVersion(){
         PackageManager manager = this.getActivity().getPackageManager();
         PackageInfo info = null;

@@ -34,11 +34,15 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //获取SharedPreferences
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         editor = pref.edit();
+
+        //获取存储的字体样式，若没有则默认为Middle_textSize
         int text_style = pref.getInt("text_style", R.style.Middle_textSize);
         this.setTheme(text_style);
+
         //设置toolbar的显示字
         Toolbar toolbar = findViewById(R.id.toolBar);
         toolbar.setTitle(R.string.main_activity_title);
@@ -55,15 +59,19 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
         HomeFragment homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content,homeFragment).commit();
+
+        //获取navigationView实例并设置选项监听
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                //创建关于我们页面
                 if (item.getItemId() == R.id.nav_about){
                     about_us about_usFragment = new about_us();
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.content,about_usFragment).commit();
                 }
+                //创建设置界面
                 if (item.getItemId() == R.id.nav_set){
                     SettingFragment setting_fragment = new SettingFragment();
                     getSupportFragmentManager().beginTransaction()
@@ -74,12 +82,22 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
         });
     }
 
+    /*
+     * toolbar标题设置方法
+     * @title: 当前页面标题名
+     */
     @Override
     public void showTitle(String title) {
         Toolbar toolbar = findViewById(R.id.toolBar);
         toolbar.setTitle(title);
     }
 
+    /*
+     * 字体大小设置方法
+     * @text_style: 字体样式
+     * 通过setTheme设置字体样式
+     * 通过editor存储设置的字体样式
+     */
     @Override
     public void setTextTheme(int text_style) {
         this.setTheme(text_style);

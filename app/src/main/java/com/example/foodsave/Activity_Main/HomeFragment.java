@@ -45,6 +45,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         initData();
         //创建继承自header的view实例
         View view = inflater.inflate(R.layout.header,container,false);
+        //设置主Activity的Title
         activity.showTitle(getString(R.string.main_activity_title));
         //获取两个Spinner实例
         Spinner mStatusSpinner = view.findViewById(R.id.mStatus);
