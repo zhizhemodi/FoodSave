@@ -1,4 +1,4 @@
-# FoodSave 2.0ver
+# FoodSave 2.11ver
 
 > 程序概述
 
@@ -23,6 +23,11 @@
 >save_item中添加了@Ignore Long 类型的 "left_time" 数据<br/>
 >save_item中添加了@Ignore String 类型的 "statu" 数据<br/>
 >将 header.xml 的 constraintLayout 修改为 relativeLayout，这很重要，因为只有这样 RecyclerView 才能实现滑动
+
+>2.11ver<br/>
+>新增了about_us界面，支持显示版本信息与一些APP的介绍
+>新增了setting界面，支持对于APP字体大小的调节
+>复用了MainActivity，所有内容显示为Fragment型页面
 
 >还要做什么
 >>完成添加页面<br/>
