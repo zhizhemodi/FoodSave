@@ -83,6 +83,6 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
     @Override
     public void setTextTheme(int text_style) {
         this.setTheme(text_style);
-        editor.putInt("text_style",text_style);
+        editor.putInt("text_style",text_style).commit();
     }
 }
