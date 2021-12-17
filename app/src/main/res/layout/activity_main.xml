@@ -23,7 +23,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolBar"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/header_height"
                 android:background="@color/blue"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
         </com.google.android.material.appbar.AppBarLayout>
@@ -34,7 +34,7 @@
         android:id="@+id/nav_view"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        android:theme="@style/Item_TextSize"
+        android:theme="@style/Attention_TextSize"
         app:itemTextColor="@color/black"
         app:menu="@menu/left_hand" />
 </androidx.drawerlayout.widget.DrawerLayout>

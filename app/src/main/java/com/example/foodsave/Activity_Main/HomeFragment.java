@@ -32,11 +32,13 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     private RecyclerView recyclerView;
     private fragmentListener activity;
 
+    //获取主Activity
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = (fragmentListener) activity;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         //初始化数据

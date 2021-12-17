@@ -1,7 +1,9 @@
 package com.example.foodsave.Activity_Main;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +15,7 @@ import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.foodsave.Other.SettingFragment;
 import com.example.foodsave.Other.about_us;
 import com.example.foodsave.R;
 import com.google.android.material.navigation.NavigationView;
@@ -25,10 +28,17 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity implements fragmentListener {
 
     private NavigationView navigationView;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //获取SharedPreferences
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = pref.edit();
+        int text_style = pref.getInt("text_style", R.style.Middle_textSize);
+        this.setTheme(text_style);
         //设置toolbar的显示字
         Toolbar toolbar = findViewById(R.id.toolBar);
         toolbar.setTitle(R.string.main_activity_title);
@@ -54,6 +64,11 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.content,about_usFragment).commit();
                 }
+                if (item.getItemId() == R.id.nav_set){
+                    SettingFragment setting_fragment = new SettingFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content,setting_fragment).commit();
+                }
                 return true;
             }
         });
@@ -63,5 +78,11 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
     public void showTitle(String title) {
         Toolbar toolbar = findViewById(R.id.toolBar);
         toolbar.setTitle(title);
+    }
+
+    @Override
+    public void setTextTheme(int text_style) {
+        this.setTheme(text_style);
+        editor.putInt("text_style",text_style);
     }
 }

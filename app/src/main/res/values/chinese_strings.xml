@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--The following is Chinese text-->
+    <!--toolbar标题-->
     <string name="main_activity_title">保质期监测</string>
     <string name="setting">设置</string>
     <string name="update">升级到家庭版</string>
     <string name="delete_data">删除数据</string>
     <string name="about_us">关于我们</string>
+    <!--页面内容-->
     <string name="still_have">还有</string>
     <string name="out_of_deadline">过期</string>
     <string name="create_date">生产日期</string>
@@ -14,6 +16,7 @@
     <string name="version_name">软件版本号：</string>
     <string name="can_not_find_version_name">无法获取版本信息</string>
     <string name="about_us_1">欢迎使用储物保质期记录APP，此APP创建与2021年12月。</string>
+    <!--中文状态-->
     <string-array name="ch_status">
         <item>全部状态</item>
         <item>非常新鲜</item>
@@ -24,6 +27,7 @@
         <item>保质期已过</item>
         <item>烂了</item>
     </string-array>
+    <!--英文状态-->
     <string-array name="status">
         <item>all_status</item>
         <item>fresh</item>
