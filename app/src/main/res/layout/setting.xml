@@ -3,13 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TextView
+
+    <Button
+        android:id="@+id/set_alarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="调整字体"
         style="@style/Attention_TextSize"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/change_text"
+        />
+    <TextView
+        android:id="@+id/change_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/change_textSize"
+        style="@style/Attention_TextSize"
         app:layout_constraintBottom_toTopOf="@+id/buttons"/>
     <LinearLayout
         android:id="@+id/buttons"

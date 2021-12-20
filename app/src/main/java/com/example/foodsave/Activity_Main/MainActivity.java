@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -110,5 +111,21 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
     public void setTextTheme(int text_style) {
         this.setTheme(text_style);
         editor.putInt("text_style",text_style).commit();
+    }
+
+    @Override
+    public boolean getAlarmStatus() {
+        return pref.getBoolean("alarm_set", false);
+    }
+
+    @Override
+    public void setAlarmStatus(boolean status) {
+        editor.putBoolean("alarm_set", status).commit();
+        if (status == false){
+            Toast.makeText(this,getString(R.string.stop_alarm),Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this,getString(R.string.start_alarm),Toast.LENGTH_SHORT).show();
+        }
     }
 }

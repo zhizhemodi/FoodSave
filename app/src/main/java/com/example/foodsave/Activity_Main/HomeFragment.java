@@ -60,18 +60,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         //创建继承自header的view实例
         View view = inflater.inflate(R.layout.header,container,false);
 
-        //广播接收
-        localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
-        intentFilter = new IntentFilter();
-        intentFilter.addAction("Select_One");
-        broadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                int id = intent.getIntExtra("select_id", 0);
-                detailSetter(item_list.get(id));
-            }
-        };
-        localBroadcastManager.registerReceiver(broadcastReceiver,intentFilter);
+        detailBoardCast();
 
         //设置主Activity的Title
         activity.showTitle(getString(R.string.main_activity_title));
@@ -209,5 +198,23 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         left_time.setText(print_left);
         create_date.setText(selected.getCreate_Date().toString());
         save_place.setText(selected.getSave_Place());
+    }
+
+    /*
+     * 注册获取详细信息的广播
+     */
+    public void detailBoardCast(){
+        //广播接收
+        localBroadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        intentFilter = new IntentFilter();
+        intentFilter.addAction("Select_One");
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                int id = intent.getIntExtra("select_id", 0);
+                detailSetter(item_list.get(id));
+            }
+        };
+        localBroadcastManager.registerReceiver(broadcastReceiver,intentFilter);
     }
 }
