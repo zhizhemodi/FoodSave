@@ -16,12 +16,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import com.example.foodsave.Other.SettingFragment;
 import com.example.foodsave.Other.about_us;
 import com.example.foodsave.R;
 import com.example.foodsave.database.entity.save_item;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.concurrent.TimeUnit;
 
 /*
  * 主页面UI线程
@@ -33,6 +37,10 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
     private NavigationView navigationView;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
+    private static final String EveryDay_notice = "android.intent.action.alarm.timer"; //每日提醒广播名称
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +134,9 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
         }
         else {
             Toast.makeText(this,getString(R.string.start_alarm),Toast.LENGTH_SHORT).show();
+            PeriodicWorkRequest everyday = new PeriodicWorkRequest.Builder(EveryDayWork.class, 24, TimeUnit.HOURS).build();
+            WorkManager.getInstance().enqueue(everyday);
         }
     }
+
 }

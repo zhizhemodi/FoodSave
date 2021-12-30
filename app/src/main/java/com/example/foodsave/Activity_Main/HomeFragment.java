@@ -28,6 +28,7 @@ import com.example.foodsave.R;
 import com.example.foodsave.database.entity.save_Type;
 import com.example.foodsave.database.entity.save_item;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,6 +42,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     private TextView left_time;
     private TextView create_date;
     private TextView save_place;
+    private SaveAdapter adapter;
 
     LocalBroadcastManager localBroadcastManager;
     IntentFilter intentFilter;
@@ -78,7 +80,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         recyclerView = view.findViewById(R.id.item_list);
 
         //创建新的适配器，导入初始化的项目及类型数据
-        SaveAdapter adapter = new SaveAdapter(getContext(), item_list, type_list);
+        adapter = new SaveAdapter(getContext(), item_list, type_list);
 
         //设置recyclerview为线性布局，方向为竖直（VERTICAL）
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL,true));
@@ -148,6 +150,19 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
             case R.id.mStatus:
                 //TODO 按状态进行数据查询
                 get = status[i]; //当前选中的状态
+                if (get.equals(status[0])){
+                    adapter = new SaveAdapter(getContext(), item_list, type_list);
+                }
+                else {
+                    List<save_item> some = new ArrayList<save_item>();
+                    for(int j = 0;j < item_list.size();j++){
+                        if (item_list.get(j).getStatus().equals(get)){
+                            some.add(item_list.get(j));
+                        }
+                    }
+                    adapter = new SaveAdapter(getContext(), some, type_list);
+                }
+                recyclerView.setAdapter(adapter);
                 break;
             case R.id.mTypes:
                 get = type_name_list.get(i); //当前选中的类型
@@ -166,7 +181,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
                 }
                 item_list = searchThread.getItem_list();
                 //创建新的适配器，导入初始化的项目及类型数据
-                SaveAdapter adapter = new SaveAdapter(getContext(), item_list, type_list);
+                adapter = new SaveAdapter(getContext(), item_list, type_list);
                 //设置recyclerview为线性布局，方向为竖直（VERTICAL）
                 recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(),LinearLayoutManager.VERTICAL,true));
                 //导入适配器进行显示
