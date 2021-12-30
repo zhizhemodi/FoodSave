@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -97,6 +98,28 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
                 return true;
             }
         });
+    }
+
+    //选项菜单
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_item, menu);
+        return true;
+    }
+
+    //选项菜单监听
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id == R.id.action_add){
+            //TODO 进入添加储物界面
+            Toast.makeText(this,"进入添加界面",Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.action_delete){
+            //TODO 删除选中储物
+            Toast.makeText(this,"删除储物",Toast.LENGTH_SHORT).show();
+        }
+        return true;
     }
 
     /*
