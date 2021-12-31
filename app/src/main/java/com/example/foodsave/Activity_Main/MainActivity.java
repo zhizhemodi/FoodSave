@@ -17,15 +17,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.room.Room;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
 import com.example.foodsave.Other.SettingFragment;
 import com.example.foodsave.Other.about_us;
 import com.example.foodsave.R;
+import com.example.foodsave.database.AppDatabase;
 import com.example.foodsave.database.entity.save_item;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /*
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
     private NavigationView navigationView;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
+    private HomeFragment homeFragment;
     private static final String EveryDay_notice = "android.intent.action.alarm.timer"; //每日提醒广播名称
 
 
@@ -68,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
         toggle.syncState();
 
         //创建HomeFragment实例并载入FragmentLayout
-        HomeFragment homeFragment = new HomeFragment();
+        homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content,homeFragment).commit();
 
@@ -117,6 +121,13 @@ public class MainActivity extends AppCompatActivity implements fragmentListener 
         }
         else if (id == R.id.action_delete){
             //TODO 删除选中储物
+            AppDatabase database = Room.databaseBuilder(Objects.requireNonNull(this).getApplicationContext(),
+                    AppDatabase.class,getResources().getString(R.string.Database_Name)).build();
+            DeleteThread deleteThread = new DeleteThread(database,homeFragment.getSelect_now());
+            deleteThread.start();
+            homeFragment = new HomeFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content,homeFragment).commit();
             Toast.makeText(this,"删除储物",Toast.LENGTH_SHORT).show();
         }
         return true;

@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     private TextView create_date;
     private TextView save_place;
     private SaveAdapter adapter;
+    private int select_now;
 
     LocalBroadcastManager localBroadcastManager;
     IntentFilter intentFilter;
@@ -226,10 +227,14 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                int id = intent.getIntExtra("select_id", 0);
-                detailSetter(item_list.get(id));
+                select_now = intent.getIntExtra("select_id", 0);
+                detailSetter(item_list.get(select_now));
             }
         };
         localBroadcastManager.registerReceiver(broadcastReceiver,intentFilter);
+    }
+
+    public int getSelect_now() {
+        return select_now;
     }
 }

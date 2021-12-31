@@ -24,4 +24,7 @@ public interface Save_Item_Dao {
 
     @Query("DELETE FROM save_item")
     void clearAll();
+
+    @Query("DELETE FROM save_item WHERE id = :select_id")
+    void clearOne(Integer select_id);
 }
